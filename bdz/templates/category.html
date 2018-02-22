@@ -1,0 +1,83 @@
+﻿{%extends "main.html" %}
+{%load static%}
+
+{% block name %}
+    
+                    <a href="/{{title.name}}" class="btn btn-default btn-lg btn-block"><h3 style="margin: 0px;">{{title.title}}</h3></a>
+ 
+{%endblock%}
+
+
+
+                  
+                
+                     {% block title %}
+                       <a href="/{{title.name}}" class="list-group-item active" style="font-size: 20px; padding: 0px;s">{{title.title}}</a>
+ 
+                             {%for p in second_cat %}
+                                <a href="/{{title.name}}/sub:{{p.id}}/org:0/page:1:rating/" class="list-group-item">{{p.title}}</a>
+{%endfor%}
+                           
+
+
+                          
+{%endblock%}
+
+                    
+              {%block listbox%}
+
+   
+ 
+
+
+{% for p in mas %}
+ 
+ 
+ 
+                       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+  
+                          <div class="thumbnail" style="height: 435px">
+   
+                             <img src="{% static p.goods_id.picture_id.url %}" style="height: 200px;">
+  
+                              <div class="caption">
+    
+                             <a href="/good/{{p.goods_id.id}}">{{p.goods_id.title}}
+   <font size="2px"></a><p>
+{% for key, value in short_description.items %}
+{%if key == p.goods_id.id%}
+{{value}}
+{%endif%}
+{%endfor%}
+</p></font>
+
+  
+                                  <p>
+  
+                                      <a href="/auth/in_basket/{{p.goods_id.id}}/" class="btn btn-success" role="button" data-container="body" data-toggle="popover" data-placement="top" data-content="Товар добавлен в корзину">
+
+                                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>В корзину
+
+
+                                        </a>
+
+  
+                                  </p>
+ 
+                               </div>
+    
+                        </div>
+       
+                 </div>
+               
+                       
+
+
+{%endfor%}
+                  
+
+
+ {%endblock%}
+
+
+      

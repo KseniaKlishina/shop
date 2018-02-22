@@ -134,8 +134,6 @@ class GoodsCategories(models.Model):
         db_table = 'goods_categories'
         unique_together = ('goods_id', 'category_id')
 
-
-
 class Order(models.Model):
     id = models.AutoField(primary_key=True, db_column='id')
     num_order = models.CharField(max_length=50, blank=False, db_column='num_order')

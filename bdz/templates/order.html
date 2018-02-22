@@ -1,0 +1,301 @@
+﻿{%extends "main.html" %}
+{% load static %}
+{%block listbox%}
+
+
+
+
+
+
+ {% if mas%}
+{% if type == 'home' %}
+       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " align="right">
+
+                <a href="/auth/order_basket/home" class="btn btn-primary btn-lg active">Доставить на дом</a>
+
+            </div>
+  
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
+
+                <a href="/auth/order_basket/office" class="btn btn-primary btn-lg">Самовывоз</a>
+
+            </div>
+ 
+{%else %}
+ <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " align="right">
+
+                <a href="/auth/order_basket/home" class="btn btn-primary btn-lg ">Доставить на дом</a>
+
+            </div>
+  
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
+
+                <a href="/auth/order_basket/office" class="btn btn-primary btn-lg active">Самовывоз</a>
+
+            </div>
+ 
+{%endif%}
+
+
+{%endif%}
+
+ {% if good%}
+{% if type == 'home' %}
+       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " align="right">
+
+                <a href="/auth/order_one/home/{{good.id}}" class="btn btn-primary btn-lg active">Доставить на дом</a>
+
+            </div>
+  
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
+
+                <a href="/auth/order_one/office/{{good.id}}" class="btn btn-primary btn-lg">Самовывоз</a>
+
+            </div>
+ 
+{%else %}
+ <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " align="right">
+
+                <a href="/auth/order_one/home/{{good.id}}" class="btn btn-primary btn-lg ">Доставить на дом</a>
+
+            </div>
+  
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
+
+                <a href="/auth/order_one/office/{{good.id}}" class="btn btn-primary btn-lg active">Самовывоз</a>
+
+            </div>
+ 
+{%endif%}
+
+
+{%endif%}
+
+
+
+
+
+
+       </div>
+
+                    
+       <hr>
+
+<hr>
+        <div class="row" align="center">
+
+            
+  {%if one %}
+         <form action="/auth/order_one/{{type}}/{{good.id}}/"  method="post" class="form-horizontal" align="center">
+
+
+{% else%}
+        <form action="/auth/order_basket/{{type}}/"  method="post" class="form-horizontal" align="center">
+
+
+{%endif%} 
+              {%csrf_token%}
+ {%if type == "home"%}
+
+                  <div class="form-group">
+
+                    <div class="row">
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+
+                            <label for="adress" class="control-label">Адрес <span class="glyphicon glyphicon-asterisk" style="color: red; font-size: 9px;"></label>
+
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                            <textarea input  name="adress" id="adress" style="width: 200px; resize: vertical;" class="form-control" placeholder="address"></textarea>
+
+                        </div>
+
+ {% if adress_error != False %} <label> {{adress_error}}</label>   {%endif%}
+                    </div>
+
+                </div>
+
+{%endif%}
+
+ <div class="form-group">
+
+         <div class="row">
+
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+
+
+               <label for="use_name" class=" control-label">Имя</label>
+  
+               </div>
+    
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+                        <input  name="use_name" id="use_name" style="width: 200px;" class="form-control" placeholder="Имя">
+
+                        </div>
+
+               </div>
+
+       
+           </div>
+ 
+                <div class="form-group">
+
+                    <div class="row">
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+
+                            <label for="telephone" class="control-label">Телефон<span class="glyphicon glyphicon-asterisk" style="color: red; font-size: 9px;"></label>
+
+                        </div>
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                            <input  name="telephone" id="telephone" style="width: 200px;" class="form-control" placeholder="8-903-123-45-46">
+
+                        </div>
+
+ {% if phone_error != False %} <label> {{phone_error}}</label>  {%endif%}                       </div>
+
+                </div>
+
+
+
+
+ <div class="form-group">
+
+
+
+            <div class="row">
+
+                        <div align="center" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+
+    
+<span class="input-group-addon" >Город</span>
+                        <span   class="input-group-btn">
+                            <select type="town" name="town" id="town" type="text"  class="form-control" title="town">
+                              {% for  p in city_list %}
+                                <option>{{p.name}}</option>
+                                    {% endfor %}
+                            </select>
+                        </span>                     
+                                 </div></div>
+</div>       
+
+<div class="row" align="center">
+
+            <input class="btn btn-lg btn-primary" type="submit" value="Подтвердить ">        </div>
+
+
+
+ </form>
+
+
+
+
+
+
+
+      </div>
+
+
+        <hr>
+
+
+<div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">
+
+                <h3 style="font-weight: lighter;">Проверьте заказ</h3>
+
+            </div>
+
+        </div>
+
+
+        
+        <div class="row">
+
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                <table class="table table-striped" align="center" style="text-align: center;">
+
+                    <thead align="center">
+
+                        <tr>
+
+                            
+                            <th style="text-align: center;">Название</th>
+
+                            <th style="text-align: center; width: 10%;">Количество</th>
+
+                            <th style="text-align: center;">Цена</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+
+{%if good %} <tr>
+
+                            <td class="regist-order-table-check">{{good.title}}</td>
+
+                             <td class="regist-order-table-check">1</td>
+                              <td class="regist-order-table-check">{{good.price}}р</td>
+
+                            <tr>
+
+                          <td colspan="4">
+
+                                <b>Итого: </b>{{good.price}}р
+
+                            </td>
+
+                        </tr>
+ 
+                    </tbody>
+
+                </table>
+
+     {%else%}
+
+{%for p in mas%}
+                        <tr>
+
+                            <td class="regist-order-table-check">{{p.title}}{{p.goods_id.title}}</td>
+
+                            <td class="regist-order-table-check">{% for  key, value  in count.items %}
+              {%if key == p.id %} {{value}}
+                    {%endif%} 
+         {%endfor%} {{p.num_items}}</td>
+
+                            <td class="regist-order-table-check">{{p.price}}{{p.goods_id.price}}р</td>
+
+                        </tr>
+
+     {%endfor%}                                           
+                        <tr>
+
+                          <td colspan="4">
+
+                                <b>Итого: </b>{{summ}}р
+
+                            </td>
+
+                        </tr>
+ 
+                    </tbody>
+
+                </table>
+
+{%endif%}
+            </div>
+
+        </div>
+
+  
+{%endblock%}

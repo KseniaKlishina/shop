@@ -160,6 +160,9 @@ def change_confirm(request, activation_key):
  except  :
         raise Http404 
 
+
+
+
 def register(request):
   try:
     context={}    
@@ -289,6 +292,8 @@ def in_busket(request, good_id):
     except  :
         raise Http404
 
+
+
 def in_basket_to_basket(request, good_id):
   try:
         response=redirect('/auth/basket/')
@@ -324,6 +329,8 @@ def basket_goods_count_plus(request, goods_id):
      return redirect('/auth/basket/')
   except  :
         raise Http404
+
+
 def basket_goods_count_minus(request, goods_id):
   try:
     if not request.user.is_authenticated():
@@ -358,7 +365,7 @@ def basket_delete(request, goods_id):
 def basket(request):
   try: 
     context={}
-    good=[]   
+    good=[]
     count={}
     if not request.user.is_authenticated():
         for p in request.session.keys():
@@ -368,7 +375,7 @@ def basket(request):
                 count[d]=request.session[p].replace(str(auth.get_user(request).username),'')
         context['mas']=good
         context['count']=count
-    else:
+
         goods=Basket.objects.filter(user_id=request.user.id)
         
         context['goods']=goods

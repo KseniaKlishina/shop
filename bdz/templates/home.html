@@ -1,0 +1,150 @@
+﻿{%extends "main.html" %}
+{% load static %}
+{% block name %} <a href="" class="btn btn-default btn-lg btn-block"><h3 style="margin: 0px;">Каталог</h3></a>{%endblock%}
+
+
+{% block title %}
+
+ 
+
+                   
+
+                   
+ {%for p in first_cat%} <p>
+      <a href="/{{p.name}}" class="list-group-item active" style="font-size: 20px; padding: 0px;s">{{p.title}}</a>   
+           {% for  key, value  in my.items %}
+              {%if key == p.name %}
+                {%for  v in value%}
+
+                      <a href="/{{p.name}}/sub:{{v.id}}/org:0/page:1:rating/" class="list-group-item">{{v.title}} </a>
+     {%endfor%}
+            {%endif%}
+         {%endfor%}
+</p>
+{%endfor%}
+
+
+              
+                        
+      
+                
+
+                           
+ {% endblock %}       
+
+
+
+
+{%block listbox%} 
+<div class="row">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                             <!-- Indicators -->
+                                      <ol class="carousel-indicators">
+                                       {% for  p  in  category %}
+                                       {% if p.id == 1%}
+                                        <li data-target="#carousel-example-generic" data-slide-to={{p.id}} class="active"></li>
+                                       {% else %}
+                                 <li data-target="#carousel-example-generic" data-slide-to={{p.id}}></li>
+                                    {%endif%}
+                                     {%endfor%}
+                                
+                                      </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+
+
+
+{% for  p  in  category %}
+{% if p.category_id.title == category.0.category_id.title %}
+
+
+                               <div class="item active">
+                                 
+{% else %}
+
+
+                                <div class="item ">
+{%endif%}
+                                    <img src="{% static p.image_id.url%}" style="height: 300px;">
+                                    <div class="carousel-caption">
+                                        <div class="panel panel-default" style="background-color: rgba(255, 255, 255, 0.5);">
+                                            <h4>{{p.category_id.title}}</h4>
+
+                                            <br>
+                                              {% for key, value  in for_lis_box.items %}
+                                                   {%if key == p.category_id.title %}
+                                                 
+                                            <a href="/{{value}}/sub:{{p.category_id.id}}/org:0/page:1:rating/" class="btn btn-info btn-sm">Узнать больше</a>
+                                                {%endif%}
+                                              {%endfor%}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                          {% endfor %}
+                           
+
+
+</div>    
+ <!-- Controls -->
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+   </div>
+                    </div>
+
+
+
+
+
+                    <div class="row">
+
+                        <img align="center" src="{% static banner.image_id.url%}" style="margin: 15px;"> 
+
+                    </div>
+                    <div class="row">
+                      {% for p in events %}
+
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                         
+                                        <img align="center"  style="width: 100%;"src="{% static p.image_id.url%}" >
+                                    </div>
+                                    <div class="row">
+                                        <b>{{p.title}}</b>
+                                    </div>
+                                    <div class="row">
+                                       <!-- <b>{{p.pub_date}}</b>--!>
+                                    </div>
+                                    <div class="row">
+                                        {{p.description}}
+                                    </div>
+                                    <div class="row">
+                                        <a href="/events/{{p.id}}/">
+                                            <button class="btn btn-default">
+                                                Подробнее <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                            </buton>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{%endfor%}
+                       
+
+</div>
+
+
+
+{%endblock%}          
+      
