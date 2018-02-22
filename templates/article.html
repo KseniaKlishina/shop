@@ -1,0 +1,75 @@
+﻿{%extends "main.html" %}
+{%load static%}
+{%block good%}
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                    <div class="panel panel-default;">
+                        <div class="panel-body">
+
+                            <h3 style="margin-top: 0px;">{{good.title}} 
+                                <br> 
+                                   {%for p in rating %}
+                                    <span class="glyphicon glyphicon-star" style="color: red;" aria-hidden="true"></span>
+
+                                    {%endfor%}
+                            </h3>
+
+                            <img src="{%static good.picture_id.url %}" >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="panel panel-default;">
+
+                        <div class="panel-body">
+
+                            <ul class="list-unstyled" style="margin-top: 30px; padding: 10px;">
+
+                                <li style="margin: 10px;">Цена: <h4 style="display: inline;">{{good.price}}</h4><hr></li>
+
+                                                                       <a  href="/auth/in_basket/{{good.id}}/" class="btn btn-success btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="Товар добавлен в корзину">
+
+
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>В корзину
+
+
+                            </a>
+
+                                </li>
+
+                                                               <li><a href="/auth/order_one/home/{{good.id}}/" class="btn btn-link">Доставить на дом</a></li>
+
+                                <li><a href="/auth/order_one/office/{{good.id}}/" class="btn btn-link">Забрать в магазине</a></li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+                    <span align="center"><h4>Описание</h4></span>
+
+                    <hr>
+
+                  {{good.description}}                </div>
+
+            </div>
+
+        </div>
+
+
+        {%endblock%}

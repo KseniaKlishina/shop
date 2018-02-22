@@ -1,0 +1,260 @@
+{%extends "main.html" %}
+{% load static %}
+
+{% block name %}
+    
+                    <a href="/{{title.name}}" class="btn btn-default btn-lg btn-block"><h3 style="margin: 0px;">{{title.title}}</h3></a>
+ 
+{%endblock%}
+
+
+
+                  
+                
+                     {% block title %}
+                       <a href="/{{title.name}}" class="list-group-item active" style="font-size: 20px; padding: 0px;s">{{subcategoryes.title}}</a>
+ 
+                           
+
+
+ 
+
+ {% for  p in list_org %}
+{%if p.goods_id__organization_id == org_id %}
+  <a href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{p.goods_id__organization_id}}/page:1:rating/" class="list-group-item active" style="font-size: 20px; padding: 0px;s">{{p.goods_id__organization_id__title}} </a>
+ {%else%} 
+ <a href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{p.goods_id__organization_id}}/page:1:rating/" class="list-group-item ">{{p.goods_id__organization_id__title}} </a>                    
+ {%endif%}
+                         {% endfor %} 
+
+                           
+
+
+                          
+{%endblock%}
+
+
+
+
+{%block listbox%}
+                      
+                                <div class="row">
+  
+                                <img align="center" src="{% static banner.image_id.url%}" style="margin: 15px;">
+    
+                                 </div>
+  
+
+
+
+                  <div class="row">
+                         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+                           <div class="row" align="left">
+
+                                <ul class="list-group">
+ 
+
+                                   <li class="list-group-item">
+ 
+                                       <ol class="breadcrumb" style="margin: 0;">
+
+                                       {% if rating_or_price == "rating" %}
+                                            <li><a class="btn btn-primary btn-sm" disabled="disabled" href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:1:rating/">По популярности</a></li>
+
+                                            <li><a class="btn btn-link btn-sm" href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:1:price/">По цене</a></li>
+
+                                       {%else%} 
+                                   <li><a class="btn btn-link btn-sm" href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:1:rating/">По популярности</a></li>
+                                  <li><a class="btn btn-primary btn-sm" disabled="disabled" href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:1:price/">По цене</a></li>
+
+                                    {%endif%}
+                                        </ol>
+
+                                    </li>
+
+
+
+
+
+
+                                 {% for  p in list_goods %}
+                                   <li class="list-group-item">
+
+                                        <div class="row">
+
+
+                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+                                                <img src="{% static p.goods_id.picture_id.url%}" height="170px">
+
+                                            </div>
+
+
+                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+                                                <div class="row-fluid">
+
+                                                   
+                                                   <a href="/good/{{p.goods_id.id}}/" >
+
+                                                        <h4 align="left">
+                                                          {{p.goods_id.title}}
+                                                            
+                                                        </h4>
+
+                                                    </a>
+
+                                                  
+                                               </div>
+
+ 
+                                             <div class="row">
+
+                                                    <ul>
+
+                                                         {% for  key, value  in  str_for_rating.items %}
+                                                       {%if key == p.goods_id.id %}
+                                                           <li> {%for  v in value%}
+                                                            <span class="glyphicon glyphicon-star" style="color: red;" aria-hidden="true"></span>                                                        
+                                                           {%endfor%}</li>
+                                                           {%endif%}
+                                                           {%endfor%}
+                                                       </li>
+
+                                                       <li>
+                                                        {{p.goods_id.description}} 
+                                                                                                           </ul>
+
+                                              </div>
+
+
+                                             </div>
+
+
+                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" alight=right>
+
+
+                                                <div class="row">
+
+                                                    <h3>{{p.goods_id.price}} р</h3>
+
+                                                </div>
+ 
+                                               
+                                               
+                                                     <a href="/auth/in_basket/{{p.goods_id.id}}/" class="btn btn-success"  data-container="body" data-toggle="popover" data-placement="top" data-content="Товар добавлен в корзину">
+
+                                                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
+                                                             </span>В корзину
+                                                    </a>
+
+
+
+                                                </div>
+
+ 
+                                           </div>
+
+
+
+                                        </div>
+ 
+                                   </li>
+
+
+ 
+           {% empty %}
+               <li>Sorry, no athlete in this list!</li>
+                      {%endfor%}
+
+                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+                                 
+                               
+                               </ul>
+ 
+                           </div>
+   
+                         <div class="row">
+
+                                <nav>
+
+                                    <ul class="pagination">
+
+                                        <li class="disabled">
+
+                                            <a href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:{{prev}}:{{rating_or_price}}/" aria-label="Previous">
+
+                                                <span aria-hidden="true">&laquo;</span>
+
+                                            </a>
+
+                                        </li>
+
+                                          
+
+
+                                         {% for p in pages %}
+                                         {%if p == page %}
+                                        <li class="active"><a href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:{{p}}:{{rating_or_price}}/">{{page}}<span class="sr-only">(current)</span></a></li>
+
+                                         {%else%}
+                                        <li><a href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:{{p}}:{{rating_or_price}}/">{{p}}</a></li>
+
+                                        {%endif%}
+                                        {%endfor%}
+
+                                        <li class="disabled"><a href="/{{title.name}}/sub:{{subcategoryes.id}}/org:{{org_id}}/page:{{next}}:{{rating_or_price}}/">... <span class="sr-only">(current)</span></a></li>
+
+                                    </ul>
+
+                                </nav>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+
+            <div class="container-fluid">
+
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#"><h4 style="margin: 0px;">© Copyright 2015</h4></a></li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        
+    </body>
+</html>
+                           
+ {% endblock %}  

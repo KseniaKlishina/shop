@@ -1,0 +1,142 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+
+
+{%load static %}
+        <meta charset="utf-8">
+
+
+        <title>Форма регистрации</title>
+
+        <link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}">
+
+        <link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}">
+
+        <script type="text/javascript" src="{%static 'js/script.js'%}"></script>
+
+        <script type="text/javascript" src="{%static 'js/jquery-1.11.1.js'%}"></script>
+
+        <script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
+
+    </head>
+
+
+    <body style="padding-top: 65px;">
+
+
+        <div class="row">
+
+       
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" align="center">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+       
+                      <form action="/auth/change/" class="form-horizontal" align="center" method="post">
+
+                    {%csrf_token%}
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                        <label for="name"  class="control-label">Имя</label>
+
+
+
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                       <input  name="name" id="name" style="width: 200px;" class="form-control" placeholder="Имя">
+                                    </div>
+
+                                  
+                                  </div>
+
+                            </div>
+
+                        
+
+                          
+                                                                                 <div class="form-group">
+
+                                <div class="row">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                        <label for="sename "class="control-label">Фамилия</label>
+
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                        <input  name="sename" id="sename" style="width: 200px;" class="form-control" placeholder="Фамилия">
+
+                                       </div>
+
+                                    
+                                    </div>
+ 
+                              </div>
+
+
+                          <div class="form-group">
+
+                                <div class="row">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                        <label for="username "class="control-label">Login</label>
+
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                        <input  name="username" id="sename" style="width: 200px;" class="form-control" placeholder="Login">
+
+                                       </div>
+
+                                    
+                                    </div>
+ 
+                              </div>
+
+
+             <hr>
+                        <div class="row">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
+
+                                <input class="btn btn-primary btn-lg"  type="submit" value="Изментить " >
+                            </div>
+
+                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
+
+                               <a href="/auth/change_password/0" class="btn btn-primary btn-lg">Изменить пароль</a>
+                         
+                         </div>
+                   </div>
+ 
+
+
+                           <hr>
+                     
+                         
+                        </form>
+
+             
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+</html>

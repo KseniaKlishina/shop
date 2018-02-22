@@ -1,0 +1,186 @@
+﻿{%extends "main.html" %}
+{% load static %}
+{%block listbox%}
+
+        <div class="container-fluid">
+ 
+           <div class="row" align="center">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <h1 style="font-weight: lighter;">Корзина</h1>
+
+                    <hr>
+
+                </div>
+            </div>
+
+
+ 
+           <div class="row">
+
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                    
+
+                   <table class="table table-striped" align="center" style="text-align: center;">
+
+                        <thead align="center">
+ 
+                           <tr>
+
+                                
+                                <th style="text-align: center;">Название</th>
+
+                                <th style="text-align: center; width: 10%;">Количество</th>
+
+                                <th style="text-align: center;">Цена</th>
+
+                                <th style="width: 10%;"></th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+{%if mas%}
+                    {%for p in mas  %}
+                            <tr>
+
+                                <td>{{p.title}}</td>
+                  <td> <table><tr> 
+<td><a class="btn"  align="right" href="/auth/basket_goods_count_minus/{{p.id}}">-</a></td>
+<td>
+{% for  key, value  in count.items %}
+              {%if key == p.id %} {{value}}
+                    {%endif%}
+         {%endfor%}
+</td>
+<td> 
+<a class="btn" align="left" href="/auth/basket_goods_count_plus/{{p.id}}">+</a>
+
+</td></tr></table>
+</td>
+
+ 
+         
+                                
+                               <td>{{p.price}}р</td>
+
+                                <td><a href="/auth/basket_delete/{{p.id}}/" class="btn btn-warning" data-container="body" data-toggle="popover" data-placement="right" data-content="Товар удален">Удалить</a></td>
+
+                            </tr>
+
+
+{%endfor%}    
+
+{%endif%}
+
+
+{%if goods%}
+
+ {%for p in goods  %}
+                            <tr>
+
+                                <td>{{p.goods_id.title}}</td>
+                  <td> <table><tr> 
+<td><a class="btn"  align="right" href="/auth/basket_goods_count_minus/{{p.goods_id.id}}">-</a></td>
+<td>
+{{p.num_items}}
+</td>
+<td> 
+<a class="btn" align="left" href="/auth/basket_goods_count_plus/{{p.goods_id.id}}">+</a>
+
+</td></tr></table>
+</td>
+
+ 
+         
+                                
+                               <td>{{p.goods_id.price}}р</td>
+
+                                <td><a href="/auth/basket_delete/{{p.goods_id.id}}/" class="btn btn-warning" data-container="body" data-toggle="popover" data-placement="right" data-content="Товар удален">Удалить</a></td>
+
+                            </tr>
+
+
+{%endfor%}    
+
+{%endif%}
+ 
+                                               </tbody>
+                    </table>
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+            <div class="row" align="center">
+
+                <a class="btn btn-primary btn-lg" href="/auth/order_basket/office">Оформить заказ</a>
+
+            </div>
+
+
+            <hr>
+
+
+            <div class="row">
+
+                
+            </div>
+
+
+            <div class="row" align="center">
+
+                <h4>Возможно вам будут интересны:</h4>
+ 
+            </div>
+
+            <div class="row" align="center">
+
+
+{%for p in perfect_goods %}
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+
+                            <h5>
+
+                                {{p.goods_id.title}}                            </h5>
+
+
+                            <img src="{% static p.goods_id.picture_id.url%}" width="180px">
+
+                            <a  href="/auth/in_basket/{{p.goods_id.id}}/" class="btn btn-success btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="Товар добавлен в корзину">
+
+
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>В корзину
+
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                  {%endfor%}             
+            </div>
+
+        </div>
+
+
+      {%endblock%}

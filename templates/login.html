@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+
+
+{%load static %}
+        <meta charset="utf-8">
+
+
+        <title>Логин</title>
+
+        <link rel="stylesheet" type="text/css" href="{%static 'css/bootstrap.min.css'%}">
+
+        <link rel="stylesheet" type="text/css" href="{%static 'css/styles.css'%}">
+
+        <script type="text/javascript" src="{%static 'js/script.js'%}"></script>
+
+        <script type="text/javascript" src="{%static 'js/jquery-1.11.1.js'%}"></script>
+
+        <script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
+
+    </head>
+
+
+    <body style="padding-top: 65px;">
+
+
+        <div class="row">
+
+       
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" align="center">
+
+
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+                       
+                 {%if ok%} <h4>{{ok}}</h4>
+{%else%}
+                      <form action="/auth/login/" class="form-horizontal" align="center" method="post">
+
+                    {%csrf_token%}
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                        <label for="username"  class="control-label">Логин</label>
+
+                                    </div>
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                        <input name="username" id="username" style="width: 200px;" class="form-control" placeholder="логин">
+
+                                    </div>
+
+                                  <h4>{{email_error}}</h4>
+                                  </div>
+
+                            </div>
+
+                        
+
+                          
+                           <div class="form-group">
+
+                                <div class="row">
+
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                        <label for="password"class="control-label">Пароль</label>
+
+                                    </div>
+
+                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+                         <input type ="password" name="password" id="password" style="width: 200px;" class="form-control" placeholder="Пароль">
+                                   
+                                   </div>
+                                    </div>
+ 
+                              </div>
+
+{% if login_error%}
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+   <h4>{{login_error}}</h4>
+</div>
+{%endif%}
+                                                
+                      <div class="row">
+
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" align="right">
+
+                                <input class="btn btn-primary btn-lg"  type="submit" value="Войти" >
+                            </div>
+
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" align="center">
+
+                               <a href="/auth/register/" class="btn btn-primary btn-lg">Регистрация</a>
+                         
+                         </div>
+                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" align="left">
+
+                               <a href="/remember_password/" class="btn btn-primary btn-lg">Забыли пароль?</a>
+                         
+                         </div>
+                   </div>
+   
+                        </form>
+
+             {%endif%}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,187 @@
+﻿{%extends "main.html" %}
+{% load static %}
+{%block listbox%} 
+        <div class="container-fluid">
+
+            <div class="row" align="center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <h1 style="font-weight: lighter;">Личный кабинет</h1>
+
+                    <hr>
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                    <form class="form-horizontal" align="center">
+
+                        <div class="form-group">
+
+                            <div class="row">
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                    <label class="control-label" style="padding: 0;">Имя</label>
+
+                                </div>
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                    {{user.first_name}}
+                              </div>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                    <label class="control-label" style="padding: 0;">Фамилия</label>
+
+                                </div>
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                   {{user.last_name}}                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="row">
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                                    <label class="control-label" style="padding: 0;">Логин</label>
+
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                    {{user.username}}
+                               </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="row">
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+
+                                    <label class="control-label" style="padding: 0;">Email</label>
+
+                                </div>
+
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="left">
+
+                                    {{user.email}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <hr>
+                    </form>
+
+                </div>
+
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <form>
+
+                        <div class="form-group" align="center">
+
+                            <a href="/auth/basket/" class="btn btn-primary btn-block" role="button">
+
+                                +{{count_goods}} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" ></span> Моя корзина
+
+                            </a>
+
+                        </div>
+
+                        <div class="form-group" align="center">
+
+                            <a href="/auth/buy/" class="btn btn-default btn-block" role="button">
+
+                                Мои покупки
+
+                            </a>
+
+                        </div>
+                        <div class="form-group" align="center">
+
+                            <a href="/auth/change/" class="btn btn-default btn-block">
+
+                                Изменить профиль
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <div class="row">
+
+                
+           </div>
+
+
+            <div class="row" align="center">
+
+                <h4>Возможно вам будут интересны:</h4>
+ 
+            </div>
+
+
+            <div class="row" align="center">
+
+              {% for p in perfect_goods %}
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+
+                            <h5>
+
+                               {{p.goods_id.title}}
+                           </h5>
+
+                            <img src="{% static p.goods_id.picture_id.url%}" width="180px">
+
+                            <a   href="/auth/in_basket/{{p.goods_id.id}}/" class="btn btn-success btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content="Товар добавлен в корзину">
+
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>В корзину
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                       {%endfor%}                                </div>
+
+        </div>
+
+
+    {%endblock%}

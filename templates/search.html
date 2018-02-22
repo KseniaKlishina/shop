@@ -1,0 +1,118 @@
+﻿{%extends "main.html" %}
+{% load static %}
+{% block name %} <a href="" class="btn btn-default btn-lg btn-block"><h3 style="margin: 0px;">Каталог</h3></a>{%endblock%}
+
+
+{% block title %}
+
+ 
+
+                   
+
+                   
+ {%for p in first_cat%} <p>
+      <a href="/{{p.name}}" class="list-group-item active" style="font-size: 20px; padding: 0px;s">{{p.title}}</a>   
+           {% for  key, value  in my.items %}
+              {%if key == p.name %}
+                {%for  v in value%}
+
+                      <a href="/{{p.name}}/sub:{{v.id}}/org:0/page:1:rating/" class="list-group-item">{{v.title}} </a>
+     {%endfor%}
+            {%endif%}
+         {%endfor%}
+</p>
+{%endfor%}
+
+
+              
+                        
+      
+                
+
+                           
+ {% endblock %}       
+
+
+
+
+{%block listbox%} 
+
+
+                
+                    <div class="row" style="padding: 10px;">
+
+                        <div class="row">
+
+                            <h1 style="font-weight: lighter;">Результаты поиска</h1>
+
+                            <h4 style="font-weight: lighter;">По запросу "{{search}}"</h4>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+
+                            <h3 style="font-weight: lighter; margin-top: 0;">В товарах</h3>
+
+                            <table align="left" class="table">
+
+                                <tbody>
+
+                                {%for p in good %}  
+                                   <tr>
+
+
+                                        <td>
+
+                                            <img src="{%static p.goods_id.picture_id.url%}" height="80px">
+
+                                        </td>
+
+                                        <td>
+
+                                            <a href="/auth/in_basket_to_basket/{{p.goods_id.id}}/" style="margin: 8px;" class="btn btn-success btn-sm"  data-container="body" data-toggle="popover" data-placement="top" data-content="Товар добавлен в корзину">
+                                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>В корзину
+
+                                            </a>
+
+                                        </td>
+
+                                        <td>
+
+                                            <a class="btn btn-link" href="/good/{{p.goods_id.id}}/">{{p.goods_id.title}}</a>
+
+                                        </td>
+
+                                        <td>
+
+                                             {% for  key, value  in  str_for_rating.items %}
+                                                       {%if key == p.goods_id.id %}
+                                                           <li> {%for  v in value%}
+                                                            <span class="glyphicon glyphicon-star" style="color: red;" aria-hidden="true"></span>                                                        
+                                                           {%endfor%}</li>
+                                                           {%endif%}
+                                                           {%endfor%}
+                                                                                   </td>
+
+                                    </tr>
+
+                             {%endfor%}       
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                                            <div class="row">
+                        <img align="center" src="{%static banner.image_id.url%}" style="margin: 15px;">
+
+                    </div>
+                </div>
+
+            </div>
+
+        
+                                  
+ {% endblock %}  

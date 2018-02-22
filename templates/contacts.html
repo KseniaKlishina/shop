@@ -1,0 +1,35 @@
+﻿{%extends "main.html" %}
+
+{% load static %}
+
+{%block listbox%} 
+
+
+ <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">
+                <h2 style="font-weight: lighter;">Наши контакты</h2>
+            </div>
+        </div>
+        <hr>
+         <div class="row">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                <table class="table table-striped" align="center" style="text-align: center;">
+                    <thead align="center">
+                        <tr>
+                            <th style="text-align: center; width: 20%;">Должность</th>
+                            <th style="text-align: center;">Телефон</th>
+                            <th style="text-align: center;">e-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>  {%for p in contacts%}
+                        <tr>
+                            <td>{{p.post}}</td>
+                            <td>{{p.telephone}}</td>
+                            <td>{{p.email}}</td>
+                        </tr>
+                      {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+ {% endblock %}  

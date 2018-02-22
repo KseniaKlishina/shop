@@ -1,0 +1,28 @@
+﻿{%extends "main.html" %}
+{%load static%}
+{%block good%}
+        <div class="container-fluid">
+
+            <div class="row" align="center">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <h3 style="margin-top: 0px;">{{event.title}}</h3>
+
+                    <img src="{%static event.image_id.url %}" style="width: 400px;">
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+                    <hr>
+      {{str}}               </div>
+            </div>
+        </div>
+
+
+{%endblock%}

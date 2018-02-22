@@ -1,0 +1,27 @@
+.button_as_link {
+	width: 100px;
+	border: none;
+	background-color: transparent;
+	color: olive;
+}
+
+.logo-image {
+	margin-top: -10px;
+	height: 40px;
+	width: 40px;
+}
+
+.site-name-in-nav {
+	margin-bottom: -5px;
+	margin-top: 10px;
+}
+
+.top-buffer20 { 
+	margin-top:20px;
+}
+
+.menu-list { }
+
+.menu-list > .active:hover {
+	background-color: #57acf5 !important;
+}
